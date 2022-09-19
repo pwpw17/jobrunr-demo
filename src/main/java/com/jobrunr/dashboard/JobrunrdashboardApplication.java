@@ -26,7 +26,7 @@ public class JobrunrdashboardApplication {
 		return (args) -> {
 			for (int i = 0; i < 20; i++) {
 				repository.save(new Employee(null, faker.name().firstName(), faker.name().lastName(),
-						faker.internet().emailAddress()));
+						faker.internet().emailAddress(),null));
 			}
 
 //			BackgroundJob.scheduleRecurringly("generate-and-send-salary-slip",

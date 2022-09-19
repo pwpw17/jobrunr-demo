@@ -7,6 +7,7 @@ import org.jobrunr.scheduling.BackgroundJob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.wickedsource.docxstamper.replace.typeresolver.image.Image;
 
 import com.jobrunr.dashboard.model.Employee;
 import com.jobrunr.dashboard.repository.EmployeeRepository;
@@ -14,6 +15,9 @@ import com.jobrunr.dashboard.repository.EmployeeRepository;
 import static java.lang.String.format;
 import static java.time.LocalDate.now;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -49,6 +53,11 @@ public class JobService {
 //		System.out.println("ID : " + employee.getId() + " first name : " + employee.getFirstName() + " last name : "
 //				+ employee.getFirstName());
 		System.out.println("generate pdf "+employee.getId());
+		File imageFile = new File("D:\\sign1.JPG");
+		InputStream in = new FileInputStream(imageFile);
+		Image image = new Image(in);
+		
+		employee.setImage(image);
 		generateSalarySlipDocumentUsingTemplate(employee);
 	}
 
